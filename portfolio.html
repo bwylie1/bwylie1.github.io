@@ -25,7 +25,7 @@
                 margin-bottom: 20px;
                 display: flex;
                 padding: 10px;
-                font-family: courier;
+                font-family: trebuchet;
                 border-radius: 50px;
                 border-color: blue;
                 border-width: 5px;
@@ -64,7 +64,7 @@
             }
             main {
                 color: blue;
-                font-family: courier;
+                font-family: times;
                 font-size: 24px;
             }
         </style>
@@ -85,17 +85,9 @@
                 <main>
             <div class="content">
                 <h1>Portfolio</h1>
-                <ul id="portfolio">
-                    <p>My greatest strengths are:</p>
-                    <li>Excellent Mathematician</li>
-                    <li>Problem Solver</li>
-                    <li>Quick Learner</li>
-                </ul>
             </div>
         </main>
       </div>
-      <script src=""></script>
-      <script id=""></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
         <script id="portfolioScript">$(document).ready(function() {$.getJSON('projects/projects.json').then(function(data) { data.projects.forEach(function(project){ $('#portfolio').append('<li><a href="projects/' + project.name + '/">' + project.title + ' : ' + project.description + '</a></li>'); }); }); });</script>
     </body>
