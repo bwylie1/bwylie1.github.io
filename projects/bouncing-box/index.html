@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Bouncing Box</title>
+	<title>Bouncing "Box"</title>
 	<script src="jquery.min.js"></script>
 
 <!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -10,23 +10,46 @@
 	<!-- BEGIN CSS -->
 	<style>
 		/* TODO 1 */
+		h1 {
+			color: blue;
+			font-size: 700%;
+			font-family: impact;
+			padding: 25px;
+			text-align: center;
+			display: inherit;
+		}
+		.h2 {
+			color: blue;
+			font-size: 700%;
+			font-family: impact;
+			padding: 25px;
+			text-align: center;
+			display: none;
+		}
 		.box {
-			width: 70px;
-			height: 70px;
+			width: 100px;
+			height: 100px;
 			background-color: teal;
-			font-size: 300%;
+			font-size: 500%;
+			font-family: impact;
 			text-align: center;
 			display: block;
 			position: absolute;
 			top: 100px;
 			left: 0px;
+			border-radius: 50px;
 		}
 	</style>
-
+	<link rel="stylesheet" type="text/css" href="svg1.css">
 </head>
 <body class="board">
 	<!-- HTML for the box -->
-	<div class="box">?</div>
+	<div class="box"></div>
+	<h1 class="h1">Get to 50</h1>
+	<div class="h2">
+	<h2>You win!</h2>
+	<p>Refresh to play again</p>
+	</div>
 
 	<!-- BEGIN JAVASCRIPT -->
 	<script>
@@ -36,24 +59,82 @@
 
 			// jQuery stuff setup for you
 			var box = jQuery('.box');
+			var h1 = jQuery('.h1');
+			var h2 = jQuery('.h2');
 			var boardWidth = jQuery('.board').width();
-	
+			var boardHeight = jQuery(window).height();
+			console.log("Board height" + boardHeight);
+			console.log("Board width" + boardWidth);
 			// TODO 2 - Variable declarations 
-
+			var position;
+			var points;
+			var speed;
+			var direction;
+			var position2;
+			var direction2;
 			
+			position=0;
+			points=0;
+			speed=10;
+			direction=1;
+			position2=0;
+			direction2=1;
+			
+			
+			
+			box.css('left', position);
+			box.text(points);
+
 			function update() {
 				// TODO 3 / 6 / 7 / 8
+				position += speed * direction;
 				
+				//console.log("new position " + position);
+				
+				if (position >= boardWidth) {
+    				console.log("Right Wall Hit");
+    				direction=-1;
+				}
+				
+				if (position <= 0) {
+    				console.log("Left Wall Hit");
+    				direction = 1;
+
+				}
+				position2 += speed * direction2;
+				//console.log("new position2 " + position2);
+				
+				if (position2 >= boardHeight) {
+    				console.log("Bottom Wall Hit");
+    				direction2 = -1;
+		
+				}
+				if (position2 <= 0) {
+    				console.log("Top Wall Hit");
+    				direction2 = 1;
+	
+				}
+				box.css('left', position);
+				box.css('top', position2);
+				if (points === 50) {
+					direction = 0;
+					direction2 = 0;
+					h1.css('display', "none");
+					h2.css('display', "inherit");
+					
+				}
 			};
 
-
-			
 			function handleBoxClick() {
+				var randNum = Math.random() * boardWidth;
+				var randNum2 = Math.random() * boardHeight;
 				// TODO 4 / 5
-				
+				points += 1;
+				box.text(points);
+				if (points%5 === 0) {
+					speed += 3;
+				}
 			};
-
-
 			//this executes the update function code every 50 milliseconds
 			setInterval(update, 50);
 			// this executes the handleBoxClick function code every time the box is clicked on
