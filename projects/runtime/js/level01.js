@@ -30,12 +30,15 @@ var level01 = function (window) {
                 {type: 'enemy',x:2600,y:groundY - 60},
                 {type: 'enemy',x:2700,y:groundY - 40},
                 {type: 'boss',x:2900,y:groundY - 40},
-                {type: 'trophy',x:3000,y:groundY - 170}
+                {type: 'trophy',x:3000,y:groundY - 170},
+                {type: 'trophy',x:10000,y:groundY - 100},
+                {type: 'trophy',x:20000,y:groundY - 100},
+                {type: 'trophy',x:30000,y:groundY - 100},
             ]
         };
         window.levelData = levelData;
         // set this to true or false depending on if you want to see hitzones
-        game.setDebugMode(true);
+        game.setDebugMode(false);
 
         // BEGIN EDITING YOUR CODE HERE
         function createSawBlade(x,y) {
